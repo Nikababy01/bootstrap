@@ -153,10 +153,10 @@ const choseGender=(e) =>{
     const buttonId= e.target.id;
     if(buttonId === 'All'){
         duckPrinter(ducks);
-    } else {
+    } else  {
         const myDuckrubber = [];
         for(let i = 0; i < ducks.length; i++) {
-        if(ducks[i].isRubber === buttonId) {
+        if(ducks[i].isRubber) {
             myDuckrubber.push(ducks[i]);
         }   
         };
