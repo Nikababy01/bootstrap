@@ -36,7 +36,7 @@ const ducks = [
 },
 {
     color: 'silver',
-    isRubber: true,
+    isRubber: false,
     gender: 'male',
     isMigrator: false,
     socialStatus: "ready to mingle",
@@ -48,7 +48,7 @@ const ducks = [
 },
 {
     color: 'silver',
-    isRubber: true,
+    isRubber: false,
     gender: 'male',
     isMigrator: false,
     socialStatus: "ready to mingle",
@@ -60,7 +60,7 @@ const ducks = [
 },
 {
     color: 'pink',
-    isRubber: false,
+    isRubber: true,
     gender: 'female',
     isMigrator: false,
     socialStatus: "ready to mingle",
@@ -72,7 +72,7 @@ const ducks = [
 },
 {
     color: 'pink',
-    isRubber: false,
+    isRubber: true,
     gender: 'female',
     isMigrator: false,
     socialStatus: "ready to mingle",
@@ -105,41 +105,74 @@ const printToDom = (divId,textToPrint) => {
 const duckPrinter = (quacks)=> {
     let domString = '';
     for(let i = 0; i < quacks.length; i++){
-     domString+= '<div class="col-md-6 col-lg-4 card-separation">';
-     domString+= '<div class="card">';
-     domString+=`<img src="${quacks[i].imageUrl}" class="card-img-top" alt="...">`;
-    domString +='<div class="card-body">';
-    domString+=`<h5 class="card-title">${quacks[i].name}</h5>`;
-    domString+=`<p class="card-text">${quacks[i].socialStatus}</p>`;
-    domString+=`<p class="card-text">${quacks[i].diet}</p>`;
-    domString+= '</div>';
-    domString+= '</div>';
-    domString+= '</div>';
+        domString+= '<div class="col-md-6 col-lg-4 card-separation">';
+        domString+= '<div class="card">';
+        domString+=`<img src="${quacks[i].imageUrl}" class="card-img-top" alt="...">`;
+        domString +='<div class="card-body">';
+        domString+=`<h5 class="card-title">${quacks[i].name}</h5>`;
+        domString+=`<p class="card-text">${quacks[i].socialStatus}</p>`;
+        domString+=`<p class="card-text">${quacks[i].diet}</p>`;
+        domString+= '</div>';
+        domString+= '</div>';
+        domString+= '</div>';
 
     }
     printToDom('ducks',domString);
 };
 
-const choseBlue = ()=>{
-    console.log('blue!');
+const choseColor=(e) =>{
+ const buttonId= e.target.id;
+ if(buttonId === 'All'){
+     duckPrinter(ducks);
+ } else {
+     const myDucks = [];
+     for(let i = 0; i < ducks.length; i++) {
+     if(ducks[i].color === buttonId) {
+         myDucks.push(ducks[i]);
+     }   
+     };
+     duckPrinter(myDucks);
+ }
 };
-const chosePink = ()=>{
-    console.log('pink!')
-};
-const choseSilver =()=>{
-    console.log('silver!')
-};
+const choseGender=(e) =>{
+    const buttonId= e.target.id;
+    if(buttonId === 'All'){
+        duckPrinter(ducks);
+    } else {
+        const myDucksgender = [];
+        for(let i = 0; i < ducks.length; i++) {
+        if(ducks[i].gender === buttonId) {
+            myDucksgender.push(ducks[i]);
+        }   
+        };
+        duckPrinter(myDucksgender);
+    }
+   };
 
+   const rubber=(e) =>{
+    const buttonId= e.target.id;
+    if(buttonId === 'All'){
+        duckPrinter(ducks);
+    } else {
+        const myDuckrubber = [];
+        for(let i = 0; i < ducks.length; i++) {
+        if(ducks[i].isRubber === buttonId) {
+            myDuckrubber.push(ducks[i]);
+        }   
+        };
+        duckPrinter(myDuckrubber);
+    }
+   };
 
 const events= () => {
+    document.getElementById('All').addEventListener('click', choseColor);
     document.getElementById('blue').addEventListener('click', choseColor);
     document.getElementById('pink').addEventListener('click', choseColor);
     document.getElementById('silver').addEventListener('click', choseColor);
     document.getElementById('female').addEventListener('click', choseGender);
     document.getElementById('male').addEventListener('click', choseGender);
-    document.getElementById('male').addEventListener('click', isRubber);
-    
-    
+    document.getElementById('rubber').addEventListener('click', rubber);
+   
 };
 const init = ()=> {
     duckPrinter(ducks);
@@ -147,4 +180,3 @@ const init = ()=> {
 }
 init();
 
-console.log(ducks);
