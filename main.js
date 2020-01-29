@@ -118,6 +118,33 @@ const duckPrinter = (quacks)=> {
 
     }
     printToDom('ducks',domString);
+};
+
+const choseBlue = ()=>{
+    console.log('blue!');
+};
+const chosePink = ()=>{
+    console.log('pink!')
+};
+const choseSilver =()=>{
+    console.log('silver!')
+};
+
+
+const events= () => {
+    document.getElementById('blue').addEventListener('click', choseColor);
+    document.getElementById('pink').addEventListener('click', choseColor);
+    document.getElementById('silver').addEventListener('click', choseColor);
+    document.getElementById('female').addEventListener('click', choseGender);
+    document.getElementById('male').addEventListener('click', choseGender);
+    document.getElementById('male').addEventListener('click', isRubber);
+    
+    
+};
+const init = ()=> {
+    duckPrinter(ducks);
+    events();
 }
-duckPrinter(ducks);
+init();
+
 console.log(ducks);
